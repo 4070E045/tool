@@ -56,4 +56,13 @@ class ICMP(Structure):
   ("unused",              c_ushort),
   ("next_hop_mtu",        c_ushort),
   ]
-def_new
+def_new_(self, socket_buffer):
+  return self.from_buffer_copy(socket_buffer)
+def_init_(self, socket_buffer=None):
+  self, protocol_map = {1:"ICMP", 6:"TCP", 17:"UDP"}
+  self.src_address = socket.inet_ntoa(strust.pack("<L",self.src))
+  self.dst_address = socket.inet_ntoa(strust.pack("<L",self.dst))
+  try:
+    self, protocol = self.protocol_map[self.protocol_num]
+  except:
+    self, protocol = str(self.protocol_num)
